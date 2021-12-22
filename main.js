@@ -27,11 +27,23 @@ function onAdd() {
     }
     const item = createItem(text);
     items.appendChild(item);
-
+    item.scrollIntoView();
     input.value = "";
     input.focus();
 }
 
 addBtn.addEventListener("click", () => {
     onAdd();
+});
+
+input.addEventListener("keypress", () => {
+    if (event.key == "Enter") {
+        onAdd();
+    }
+});
+
+items.addEventListener("click", (event) => {
+    const id = event.target.dataset.id;
+    const toBeDelete = document.querySelector(`li[data-id='${id}']`);
+    toBeDelete.remove();
 });
